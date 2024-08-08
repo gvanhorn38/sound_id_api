@@ -5,6 +5,7 @@ import pandas as pd
 import requests
 
 from models import TaskStatus
+from utils import urljoin
 
 TASK_STATUS_QUEUED = 'QUEUED'
 TASK_STATUS_IN_PROGRESS = 'IN_PROGRESS'
@@ -18,7 +19,7 @@ def get_task_status(api_url, api_key, task_id):
     headers = {
         'x-api-key': api_key
     }
-    url = os.path.join(api_url, task_id)
+    url = urljoin(api_url, task_id)
     response = requests.get(url, headers=headers)
     
     if response.status_code != 200:

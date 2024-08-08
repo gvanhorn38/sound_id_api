@@ -1,3 +1,5 @@
+from functools import reduce
+
 def print_execution_time(execution_time):
     days = execution_time.days
     seconds = execution_time.seconds
@@ -12,3 +14,10 @@ def print_execution_time(execution_time):
         print(f"Execution time: {minutes} minutes, {seconds} seconds")
     else:
         print(f"Execution time: {seconds} seconds")
+
+
+# See here: https://stackoverflow.com/a/58037371
+def join_slash(a, b):
+    return a.rstrip('/') + '/' + b.lstrip('/')
+def urljoin(*args):
+    return reduce(join_slash, args) if args else ''
