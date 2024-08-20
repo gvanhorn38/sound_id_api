@@ -16,6 +16,7 @@ ALLOWED_AUDIO_FORMATS = {
     'audio/x-wav': '.wav',
     'audio/aac': '.aac',
     'audio/flac': '.flac',
+    'audio/x-flac': '.flac',
     'audio/x-m4a': '.m4a',
     'audio/ogg': '.ogg',
     'audio/x-ms-wma': '.wma',
@@ -23,7 +24,8 @@ ALLOWED_AUDIO_FORMATS = {
     'audio/x-aiff': '.aif',
     'audio/opus': '.opus',
     'audio/amr': '.amr',
-    'audio/mp4': '.m4a'
+    'audio/mp4': '.m4a',
+    'audio/mp4a-latm' : '.m4a'
 }
 
 def post_task(api_url, api_key, url, audio_file_path, latitude, longitude, datetime):
@@ -78,9 +80,12 @@ def post_task(api_url, api_key, url, audio_file_path, latitude, longitude, datet
             }
             response = requests.post(api_url, headers=headers, files=files)
 
-            #print(requests.Request('POST', api_url, files=files, data={'json' : json.dumps(data)}).prepare().body)
-        
-    task_id = response.json()['id']
+            if response.status_code != 201:
+                print(f"Failed to submit task, the server responded with status code: {response.status_code}")
+                print(response.json())
+            else:
+                task_id = response.json()['id']
+
     return task_id
 
 
