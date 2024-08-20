@@ -80,11 +80,11 @@ def post_task(api_url, api_key, url, audio_file_path, latitude, longitude, datet
             }
             response = requests.post(api_url, headers=headers, files=files)
 
-            if response.status_code != 201:
-                print(f"Failed to submit task, the server responded with status code: {response.status_code}")
-                print(response.json())
-            else:
-                task_id = response.json()['id']
+    if response.status_code != 201:
+        print(f"Failed to submit task, the server responded with status code: {response.status_code}")
+        print(response.json())
+    else:
+        task_id = response.json()['id']
 
     return task_id
 
