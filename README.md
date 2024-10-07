@@ -49,12 +49,30 @@ python analyze.py \
 ```
 
 ### Analyze a Macaulay Library Audio File
-The following command is convenient for processing a specific asset from the Macaulay Library
+The following command is convenient for processing a specific asset from the [Macaulay Library](https://www.macaulaylibrary.org/).
 ```sh
 python analyze_ml.py \
 --api_url=$API_URL \
 --api_key=$API_KEY \
 --asset_id=XXX
+```
+
+### Analyze an iNaturalist Observation
+The following command is convenient for processing the first sound recording associated with a specific [iNaturalist](https://www.inaturalist.org/) observation id. 
+```sh
+python analyze_inat.py \
+--api_url=$API_URL \
+--api_key=$API_KEY \
+--obs_id=XXX
+```
+
+### Analyze a Xeno-Canto Audio File
+The following command is convenient for processing a specific recording from [Xeno-Canto](https://xeno-canto.org/)
+```sh
+python analyze_inat.py \
+--api_url=$API_URL \
+--api_key=$API_KEY \
+--obs_id=XXX
 ```
 
 ## Low Level Usage
