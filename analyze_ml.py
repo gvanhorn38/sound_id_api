@@ -1,5 +1,3 @@
-
-
 import argparse
 import datetime
 import re
@@ -30,7 +28,7 @@ def fetch_asset_details(html_content):
         raise Exception("Failed to parse date.")
 
     # Extract the coordinates
-    coords_text = soup.find(text=re.compile(r'Coordinates:'))
+    coords_text = soup.find(string=re.compile(r'Coordinates:'))
     coords_string = coords_text.find_next('span').text.strip() if coords_text else None
 
     # Convert coordinates to floats
@@ -56,7 +54,6 @@ if __name__ == "__main__":
     asset_html = fetch_html(asset_url)
     date_string, latitude, longitude = fetch_asset_details(asset_html)
 
-    # Print results
     print(f"Date: {date_string}")
     print(f"Latitude: {latitude}")
     print(f"Longitude: {longitude}")

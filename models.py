@@ -18,15 +18,23 @@ class Task(BaseModel):
     latitude: float = Field(ge=-90, le=90) 
     longitude: float = Field(ge=-180, le=180)
     datetime: datetime
+    include_species_codes: Union[List[str], None] = None
 
 class Detection(BaseModel):
     species_code: str
     detection_events: int
+    detections: int
+    detection_rate: float
     max_score: float
     max_start_sec: float
+    date_relevant: Optional[int] = 1
+
+class DetectorInfo(BaseModel):
+    version: Union[str, None] = None
 
 class TaskStatus(BaseModel):
     id: str
     status: str
     message: Union[str, None] = None
     detections: Union[List[Detection], None] = None
+    detector_info: Union[DetectorInfo, None] = None

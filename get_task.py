@@ -26,7 +26,7 @@ def get_task_status(api_url, api_key, task_id):
         print(f"Failed to fetch task status, the server responded with status code: {response.status_code}")
         print(response.json())
     else:
-        print(response.json())
+        #print(response.json())
         task_status = TaskStatus(**response.json())    
 
     return task_status
