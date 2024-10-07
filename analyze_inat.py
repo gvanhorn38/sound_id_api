@@ -45,6 +45,7 @@ if __name__ == "__main__":
     parser.add_argument('--api_url', type=str, required=True, help="API URL")
     parser.add_argument('--api_key', type=str, required=True, help="API key")
     parser.add_argument('--obs_id', type=int, required=True, help="iNaturalist Observation ID")
+    parser.add_argument('--include_species_codes', type=str, help="Space-separated list of eBird species codes to include in the analysis", default=None)
     parser.add_argument('--output_fp', type=str, help="(Optional) File path to save the detection results.", default=None)
 
     args = parser.parse_args()
@@ -59,13 +60,20 @@ if __name__ == "__main__":
     print(f"Latitude: {latitude}")
     print(f"Longitude: {longitude}")
 
+    # Handle the species codes that the user wants to include
+    include_species_codes_str = args.include_species_codes
+    if args.include_species_codes:
+        include_species_codes = args.include_species_codes.split()
+    else:
+        include_species_codes = None
+
     start_time = datetime.datetime.now()
 
     # Call your custom API with the fetched data
     task_id = post_task.post_task(
         args.api_url, args.api_key, 
         audio_url, None, 
-        latitude, longitude, time_observed_at
+        latitude, longitude, time_observed_at, include_species_codes
     )
     
     if task_id is not None:

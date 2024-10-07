@@ -28,7 +28,7 @@ ALLOWED_AUDIO_FORMATS = {
     'audio/mp4a-latm' : '.m4a'
 }
 
-def post_task(api_url, api_key, url, audio_file_path, latitude, longitude, datetime):
+def post_task(api_url, api_key, url, audio_file_path, latitude, longitude, datetime, include_species_codes=None):
     
     task_id = None
 
@@ -44,7 +44,8 @@ def post_task(api_url, api_key, url, audio_file_path, latitude, longitude, datet
     data = {
         'latitude': latitude,
         'longitude': longitude,
-        'datetime': datetime
+        'datetime': datetime,
+        'include_species_codes': include_species_codes,
     }
 
     if url:

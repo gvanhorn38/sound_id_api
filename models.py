@@ -2,7 +2,7 @@
 from datetime import datetime
 from typing import Annotated, Optional, Union, List
 
-from pydantic import BaseModel, HttpUrl, Field, AfterValidator, SerializeAsAny
+from pydantic import BaseModel, HttpUrl, Field, AfterValidator, SerializeAsAny, conlist
 
 class UrlConstraints:
     allowed_schemes = ["http", "https", "s3"]
@@ -18,7 +18,7 @@ class Task(BaseModel):
     latitude: float = Field(ge=-90, le=90) 
     longitude: float = Field(ge=-180, le=180)
     datetime: datetime
-    include_species_codes: Union[List[str], None] = None
+    include_species_codes: Optional[conlist(str, max_length=5)] = None  # Optional list
 
 class Detection(BaseModel):
     species_code: str
