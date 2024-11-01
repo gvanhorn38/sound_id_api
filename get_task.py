@@ -43,7 +43,7 @@ def handle_task_status(task_status, output_fp=None):
 
     elif task_status.status == TASK_STATUS_SUCCESS:
         print("Task succeeded.")
-
+        print(f"Audio duration (seconds): {task_status.audio_duration}")
         detections_df = pd.DataFrame(task_status.dict().get('detections', []))
         if output_fp is not None:
             detections_df.to_csv(output_fp, index=False)

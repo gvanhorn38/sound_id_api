@@ -36,5 +36,6 @@ class TaskStatus(BaseModel):
     id: str
     status: str
     message: Union[str, None] = None
+    audio_duration: Union[float, None] = None
     detections: Union[List[Detection], None] = None
     detector_info: Union[DetectorInfo, None] = None
